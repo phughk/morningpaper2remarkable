@@ -15,12 +15,12 @@ func TestRenderStoresToFile(t *testing.T) {
 
 	// And contents
 	item := &gofeed.Item{}
-	item.Content = "<h1>title</h1><p>paragraph contents</p>"
 
 	// When parsed
+	item.Content = "<h1>title</h1><br><p>paragraph contents</p>"
 	render(filename, item)
 
-	// File is created
+	// Then file is created
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		assert.Fail(t, fmt.Sprintf("File `%s` was not created", filename))
 	}
